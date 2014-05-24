@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RoslynSamples.Console;
 
 namespace WebApplication.Controllers
 {
@@ -23,9 +25,23 @@ public static class Program
             return View();
         }
 
-        public ActionResult Compile()
+        public ActionResult Compile(string code, string args)
         {
-            throw new NotImplementedException();
+            var arguments = args.Split(new[] {','}).Select(arg => arg.Trim()).ToArray();
+            var codeExecutor = new CodeExecutor();
+            try
+            {
+                using (var resultStream = codeExecutor.CompileAndExecute(code, arguments))
+                {
+                    var reader = new StreamReader(resultStream);
+                    ViewBag.Result = reader.ReadToEnd();
+                }
+            }
+            catch (CompilationException ex)
+            {
+                ViewBag.Result = ex.Message;
+            }
+            return View("Index");
         }
     }
 }

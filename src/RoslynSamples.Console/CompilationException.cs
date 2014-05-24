@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.Emit;
 
 namespace RoslynSamples.Console
 {
-    internal class CompilationException : Exception
+    public class CompilationException : Exception
     {
         public CompilationException(EmitResult compileResult) : base(CreateMessage(compileResult))
         {
