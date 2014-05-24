@@ -10,8 +10,6 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace FailMissingIfBrackets
 {
-    // TODO: Consider implementing other interfaces that implement IDiagnosticAnalyzer instead of or in addition to ISymbolAnalyzer
-
     [DiagnosticAnalyzer]
     [ExportDiagnosticAnalyzer(DiagnosticId, LanguageNames.CSharp)]
     public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer<SyntaxKind>
@@ -21,7 +19,9 @@ namespace FailMissingIfBrackets
         internal const string MessageFormat = "It would be nice if '{0}' has brackets";
         internal const string Category = "Syntax";
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category, DiagnosticSeverity.Warning);
+        internal static DiagnosticDescriptor Rule = 
+            new DiagnosticDescriptor(DiagnosticId, Description, 
+                MessageFormat, Category, DiagnosticSeverity.Warning);
 
         public ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {

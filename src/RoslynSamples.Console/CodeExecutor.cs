@@ -30,7 +30,8 @@ namespace RoslynSamples.Console
             var syntaxTree = CSharpSyntaxTree.ParseText(code);
 
             // Compile the syntax tree
-            var compilation = CSharpCompilation.Create("Executable", new[] {syntaxTree}, _defaultReferences,
+            var compilation = CSharpCompilation.Create("Executable", new[] {syntaxTree}, 
+                _defaultReferences,
                 new CSharpCompilationOptions(OutputKind.ConsoleApplication));
 
             var assembly = CreateAssembly(compilation);

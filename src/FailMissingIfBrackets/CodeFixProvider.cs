@@ -23,13 +23,19 @@ namespace FailMissingIfBrackets
 
         public async Task<IEnumerable<CodeAction>> GetFixesAsync(Document document, TextSpan span, IEnumerable<Diagnostic> diagnostics, CancellationToken cancellationToken)
         {
+            // Get the syntax root
             var root = await document.GetSyntaxRootAsync(cancellationToken);
+            // Find the token that triggered the fix
             var token = root.FindToken(span.Start);
             if (token.IsKind(SyntaxKind.IfKeyword))
             {
+                // Find the statement you want to change
                 var ifStatment = (IfStatementSyntax)token.Parent;
+                
+                // Create replacement statement
                 var newIfStatement = ifStatment.WithStatement(SyntaxFactory.Block(ifStatment.Statement))
                     .WithAdditionalAnnotations(Formatter.Annotation);
+                // New root based on the old one
                 var newRoot = root.ReplaceNode(ifStatment, newIfStatement);
                 return new[] {CodeAction.Create("Add braces", document.WithSyntaxRoot(newRoot))};
             }
