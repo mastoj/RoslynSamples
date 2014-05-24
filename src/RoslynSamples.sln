@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynSamples.Console", "Ro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{92FF6F24-75FA-4E23-B65A-FA0D604E3A61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynSamples.AddMissingBracketsToIf", "RoslynSamples.AddMissingBracketsToIf\RoslynSamples.AddMissingBracketsToIf.csproj", "{1BA936C0-9CDF-403C-AF74-9EAFCC436346}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{92FF6F24-75FA-4E23-B65A-FA0D604E3A61}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{92FF6F24-75FA-4E23-B65A-FA0D604E3A61}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{92FF6F24-75FA-4E23-B65A-FA0D604E3A61}.Release|x86.ActiveCfg = Release|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
