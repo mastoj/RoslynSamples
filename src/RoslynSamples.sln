@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynSamples.AddMissingBracketsToIf", "RoslynSamples.AddMissingBracketsToIf\RoslynSamples.AddMissingBracketsToIf.csproj", "{1BA936C0-9CDF-403C-AF74-9EAFCC436346}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FailMissingIfBrackets", "FailMissingIfBrackets\FailMissingIfBrackets.csproj", "{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,16 @@ Global
 		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1BA936C0-9CDF-403C-AF74-9EAFCC436346}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7CAD4576-D79F-4309-A71E-3B1398B4B6B2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
