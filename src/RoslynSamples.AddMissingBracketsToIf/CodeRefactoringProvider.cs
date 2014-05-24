@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -7,7 +6,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeRefactorings;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Rename;
+using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Text;
 
 namespace RoslynSamples.AddMissingBracketsToIf
@@ -19,44 +18,47 @@ namespace RoslynSamples.AddMissingBracketsToIf
 
         public async Task<IEnumerable<CodeAction>> GetRefactoringsAsync(Document document, TextSpan textSpan, CancellationToken cancellationToken)
         {
-            // TODO: Replace the following code with your own analysis, generating a CodeAction for each refactoring to offer
-
             var root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
 
             // Find the node at the selection.
             var node = root.FindNode(textSpan);
 
-            // Only offer a refactoring if the selected node is a type declaration node.
-            var typeDecl = node as TypeDeclarationSyntax;
-            if (typeDecl == null)
+            // Only offer a refactoring if the selected node is an if statement.
+            var ifStatement = node as IfStatementSyntax;
+            if (ifStatement == null)
             {
                 return null;
             }
 
-            // For any type declaration node, create a code action to reverse the identifier text.
-            var action = CodeAction.Create("Reverse type name", c => ReverseTypeNameAsync(document, typeDecl, c));
+            // ... and its statement is not a block
+            if (ifStatement.Statement != null && ifStatement.Statement.IsKind(SyntaxKind.Block))
+            {
+                return null;
+            }
+
+            // Create a code action that refactors the code
+            var action = CodeAction.Create("Insert brackets", c => AddMissingBrackets(document, ifStatement, c));
 
             // Return this code action.
             return new[] { action };
         }
 
-        private async Task<Solution> ReverseTypeNameAsync(Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
+        private async Task<Solution> AddMissingBrackets(Document document, IfStatementSyntax ifStatement, CancellationToken cancellationToken)
         {
-            // Produce a reversed version of the type declaration's identifier token.
-            var identifierToken = typeDecl.Identifier;
-            var newName = new string(identifierToken.Text.Reverse().ToArray());
+            // Find the syntax root
+            var root = await document.GetSyntaxRootAsync(cancellationToken);
 
-            // Get the symbol representing the type to be renamed.
-            var semanticModel = await document.GetSemanticModelAsync(cancellationToken);
-            var typeSymbol = semanticModel.GetDeclaredSymbol(typeDecl, cancellationToken);
+            // Create new if statement that corrects the old one
+            var newIfStatement = ifStatement
+                .WithStatement(SyntaxFactory.Block(ifStatement.Statement))
+                // Add formatting to the output, that is, new lines for the brackets
+                .WithAdditionalAnnotations(Formatter.Annotation);
+            
+            // Create a new root (notice that it is immutable)
+            var newRoot = root.ReplaceNode(ifStatement, newIfStatement);
 
-            // Produce a new solution that has all references to that type renamed, including the declaration.
-            var originalSolution = document.Project.Solution;
-            var optionSet = originalSolution.Workspace.GetOptions();
-            var newSolution = await Renamer.RenameSymbolAsync(document.Project.Solution, typeSymbol, newName, optionSet, cancellationToken).ConfigureAwait(false);
-
-            // Return the new solution with the now-uppercase type name.
-            return newSolution;
+            // Return the new solution
+            return document.WithSyntaxRoot(newRoot).Project.Solution;
         }
     }
 }
