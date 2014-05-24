@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Compile Page";
+}
+
+<div class="jumbotron">
+    <h1>Roslyn web integration sample</h1>
+    <p class="lead">Simple demo showing how you can write a web application that compile code and execute on the fly.</p>
+</div>
+
+<div>
+    <h2>Do some compilation</h2>
+    @using (Html.BeginForm("Compile", "Home", FormMethod.Post, new { role = "form" }))
+    {
+        <div class="form-group">
+            <label for="code">Code</label>
+            @Html.TextArea("code", ViewBag.Code as string, 10, 200, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="args">Code</label>
+            @Html.TextBox("args", ViewBag.Arguments as string, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Compile and execute" />
+            @if (ViewBag.Result != null)
+            {
+                <span>Last result: @ViewBag.Result</span>
+            }
+        </div>
+    }
+</div>
