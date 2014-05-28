@@ -9,3 +9,5 @@ This project contains a small set of sample projects that can get you started wi
  * One diagnositic project with refactoring
 
 I'll also try to add tags to the projects, in addition to the commits, as I go along so it is possible to see the changes I made and compare newly started project and finished project.
+
+There is also a presentation on [Slideshare](http://www.slideshare.net/mastoj/roslyn-35081155) where I showed this demo code.
